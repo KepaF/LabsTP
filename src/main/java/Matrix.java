@@ -53,8 +53,8 @@ public class Matrix {
 
     public static void writeToFile(FileWriter fileWriter, Matrix matrix) {
         try {
-            fileWriter.write(matrix.numberofrows() + "\n");
-            fileWriter.write(matrix.numberofcolumns() + "\n");
+            fileWriter.write(matrix.GetNuberofRows() + "\n");
+            fileWriter.write(matrix.GetNuberofColumns() + "\n");
             fileWriter.write(matrix.toString());
             fileWriter.flush();
         } catch (IOException e) {
