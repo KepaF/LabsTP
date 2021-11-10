@@ -15,7 +15,7 @@ public class Matrix {
         matrix = newMatrix;
     }
     //конструктор класса с 2-мя параметрами
-    public Matrix(int numberofrows,int numberofcolumns){
+    public Matrix(int numberofrows,int numberofcolumns) throws FileNotFoundException {
         this.numberofrows = numberofrows;
         this.numberofcolumns = numberofcolumns;
     }
@@ -51,7 +51,10 @@ public class Matrix {
         return result;
     }
 
-    public static void writeToFile(FileWriter fileWriter, Matrix matrix) {
+    File file = new File("file.txt");
+    
+    FileReader fileReader = new FileReader(file);
+    public static void writeToFile(FileWriter fileWriter, Matrix matrix)throws IOException {
         try {
             fileWriter.write(matrix.GetNuberofRows() + "\n");
             fileWriter.write(matrix.GetNuberofColumns() + "\n");
@@ -60,38 +63,19 @@ public class Matrix {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+       
+        public static void readFile( FileReader fileReader){
 
-
-
-
-
-
-
-
-    public static void writeMatrix(double [][] matrix) throws IOException {
-
-
-        try {
-            OutputStream output = new FileOutputStream("file.txt"); // Создание текстового файла
-            for(int j=0;j<matrix[0].length;j++) {
-                for (int i = 0; i < matrix.length; i++) {
-                    output.write(matrix[i][j]); // Запись каждого символа в текстовый файл
-                }
-            }
-            output.close();
-
-            InputStream input = new FileInputStream("file.txt");
-            int size = input.available();
-
-            for(int j = 0; j < size; j++) {
-                System.out.print((char)input.read() + " "); // Чтение текстового файла посимвольно
-            }
-            input.close();
-
-        }catch(IOException e) {
-            System.out.print("Exception");
         }
     }
+
+
+
+
+
+
+
+
+
 }
 
