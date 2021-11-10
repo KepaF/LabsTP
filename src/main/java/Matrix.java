@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Matrix {
     private int numberofrows;
     private int numberofcolumns;
-    private double[][] matrix;
+    private static double[][] matrix;
 
     public double[][] getMarix() {
 
@@ -63,11 +63,31 @@ public class Matrix {
         } catch (IOException e) {
             e.printStackTrace();
         }
-       
-        public static void readFile( FileReader fileReader){
-
-        }
     }
+    public static void readFile(FileReader fileReader){
+        StreamTokenizer streamTokenizer = new StreamTokenizer(fileReader);
+        try{
+            streamTokenizer.nextToken();
+            int rows = (int)streamTokenizer.nval;
+            streamTokenizer.nextToken();
+            int columns = (int)streamTokenizer.nval;
+            if (rows < 0 || columns < 0) {
+                throw new IllegalArgumentException("Одна (или обе) размерности меньше нуля");
+            }
+            streamTokenizer.nextToken();
+            Matrix m = new Matrix(rows, columns);
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
+                        m.setElements (i ,j ,streamTokenizer.nval);
+                        streamTokenizer.nextToken();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 
 
