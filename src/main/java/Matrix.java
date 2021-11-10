@@ -31,7 +31,7 @@ public class Matrix {
 
         matrix[a][b] = newValue;
     }
-    public double getElements(int a, int b) {//метод реализует отдельное добавление
+    public double getElements(int a, int b)  throws ArrayIndexOutOfBoundsException {//метод реализует отдельное добавление
 
         return matrix [a][b];
     }
@@ -50,7 +50,17 @@ public class Matrix {
         }
         return result;
     }
-
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 1; i <= GetNuberofRows(); i++) {
+            for (int j = 1; j <= GetNuberofColumns(); j++) {
+                builder.append(this.getElements(i, j)).append(" ");
+            }
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
     File file = new File("file.txt");
     
     FileReader fileReader = new FileReader(file);
